@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 class StateFullWidgetCounter extends StatefulWidget {
@@ -10,6 +8,21 @@ class StateFullWidgetCounter extends StatefulWidget {
 }
 
 class _StateFullWidgetCounterState extends State<StateFullWidgetCounter> {
+  void increment() {
+    counter++;
+    setState(() {});
+  }
+
+  void reset() {
+    counter = 0;
+    setState(() {});
+  }
+
+  void decrement() {
+    counter--;
+    setState(() {});
+  }
+
   int counter = 0;
   @override
   //El BuildContext sirve para saber el contexto en el cual nuestro widget esta siendo construido
@@ -37,42 +50,58 @@ class _StateFullWidgetCounterState extends State<StateFullWidgetCounter> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Row(
-        //usar el widget mainAxisAlignment para alinear el row
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          //Boton de sumar counter
-          FloatingActionButton.small(
-            onPressed: () {
-              counter++;
-              setState(() {});
-              //print('Hello click+ $counter');
-            },
-            child: const Icon(Icons.plus_one),
-          ),
-
-          //Boton Reset counter, le asignamos a la variable counter el cero
-          FloatingActionButton.small(
-            onPressed: () {
-              setState(() {
-                counter = 0;
-              });
-              print('Counter Reset $counter');
-            },
-            child: const Icon(Icons.restart_alt_outlined),
-          ),
-
-          //Boton reverse counter
-          FloatingActionButton.small(
-            onPressed: () {
-              counter--;
-              setState(() {});
-              //print('Hello reverse $counter');
-            },
-            child: const Icon(Icons.exposure_minus_1_outlined),
-          ),
-        ],
+      floatingActionButton: CustomWidgetFloatingButton(
+        incrementFn:
+            increment, // Se manda la referencia a la funcion(increment es la referencia) pero no se llama
+        resetFn: reset,
+        decrementFn: decrement,
       ),
+    );
+  }
+}
+
+//widget para los botones, se realizo la separacion de los botones para leer mejor el codigo
+class CustomWidgetFloatingButton extends StatelessWidget {
+  final Function incrementFn;
+  final Function resetFn;
+  final Function decrementFn;
+  const CustomWidgetFloatingButton({
+    super.key,
+    required this.incrementFn,
+    required this.resetFn,
+    required this.decrementFn,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      //usar el widget mainAxisAlignment para alinear el row
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        //Boton de sumar counter
+        FloatingActionButton.small(
+          onPressed: () => {
+            incrementFn(),
+          },
+          child: const Icon(Icons.plus_one),
+        ),
+
+        //Boton Reset counter, le asignamos a la variable counter el cero
+        FloatingActionButton.small(
+          onPressed: () => {
+            resetFn(),
+          },
+          child: const Icon(Icons.restart_alt_outlined),
+        ),
+
+        //Boton reverse counter
+        FloatingActionButton.small(
+          onPressed: () => {
+            decrementFn(),
+          },
+          child: const Icon(Icons.exposure_minus_1_outlined),
+        ),
+      ],
     );
   }
 }
