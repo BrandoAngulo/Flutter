@@ -39,16 +39,27 @@ class _StateFullWidgetCounterState extends State<StateFullWidgetCounter> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Row(
         //usar el widget mainAxisAlignment para alinear el row
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           //Boton de sumar counter
           FloatingActionButton.small(
             onPressed: () {
               counter++;
               setState(() {});
-              print('Hello click+ $counter');
+              //print('Hello click+ $counter');
             },
-            child: const Icon(Icons.add),
+            child: const Icon(Icons.plus_one),
+          ),
+
+          //Boton Reset counter, le asignamos a la variable counter el cero
+          FloatingActionButton.small(
+            onPressed: () {
+              setState(() {
+                counter = 0;
+              });
+              print('Counter Reset $counter');
+            },
+            child: const Icon(Icons.restart_alt_outlined),
           ),
 
           //Boton reverse counter
@@ -56,7 +67,7 @@ class _StateFullWidgetCounterState extends State<StateFullWidgetCounter> {
             onPressed: () {
               counter--;
               setState(() {});
-              print('Hello reverse $counter');
+              //print('Hello reverse $counter');
             },
             child: const Icon(Icons.exposure_minus_1_outlined),
           ),
