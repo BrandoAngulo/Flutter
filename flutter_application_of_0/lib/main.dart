@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_of_0/screen/home_screen.dart';
+import 'package:flutter_application_of_0/screen/state_full_widget_counter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
         //quita la etiqueta debug de la vista en el lado superior derecho
         debugShowCheckedModeBanner: false,
         //esta Center(child:Text('Hello World'))) es mi primera vista
-        home: HomeScreen());
+        /* home: HomeScreen()); */
+        home: StateFullWidgetCounter());
   }
 }
