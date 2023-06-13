@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class StateFullWidgetCounter extends StatefulWidget {
@@ -8,12 +10,13 @@ class StateFullWidgetCounter extends StatefulWidget {
 }
 
 class _StateFullWidgetCounterState extends State<StateFullWidgetCounter> {
+  int counter = 0;
   @override
   //El BuildContext sirve para saber el contexto en el cual nuestro widget esta siendo construido
   Widget build(BuildContext context) {
     //Se crea una variable para darle el valor del tamaño al texto
     const fontSize = TextStyle(fontSize: 25);
-    int counter = 0;
+
     //El escaffold es el lienzo en el cual ya tengo opciones para empezar a poner mis widgets dentro
     return Scaffold(
       //Barra de navegacion
@@ -25,6 +28,7 @@ class _StateFullWidgetCounterState extends State<StateFullWidgetCounter> {
       //muestra el texto centrado del home
       body: Center(
         child: Column(
+          //Usa MainAxisAlignment el widget de alineamiento para un column
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('Counter', style: fontSize),
@@ -32,14 +36,31 @@ class _StateFullWidgetCounterState extends State<StateFullWidgetCounter> {
           ],
         ),
       ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterFloat,
-      floatingActionButton: FloatingActionButton.small(
-        onPressed: () {
-          print('Hello world $counter');
-          counter++;
-        },
-        child: const Icon(Icons.add),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Row(
+        //usar el widget mainAxisAlignment para alinear el row
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          //Boton de sumar counter
+          FloatingActionButton.small(
+            onPressed: () {
+              counter++;
+              setState(() {});
+              print('Hello click+ $counter');
+            },
+            child: const Icon(Icons.add),
+          ),
+
+          //Boton reverse counter
+          FloatingActionButton.small(
+            onPressed: () {
+              counter--;
+              setState(() {});
+              print('Hello reverse $counter');
+            },
+            child: const Icon(Icons.exposure_minus_1_outlined),
+          ),
+        ],
       ),
     );
   }
