@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_app_1/screens/screens.dart';
+import 'package:project_app_1/router/app_routes.dart';
 
 void main() => runApp(const MyApp());
 
@@ -9,24 +9,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Material App',
-      //home: ListView1Screen());
-      initialRoute: 'home',
-      routes: {
-        'home': (BuildContext context) => const HomeScreen(),
-        'listView1': (BuildContext context) => const ListView1Screen(),
-        'listView2': (BuildContext context) => const ListView2Screen(),
-        'cards': (BuildContext context) => const CardScreen(),
-        'alerts': (BuildContext context) => const AlertScreen(),
-      },
-      //la funcion ongenerate nos pone una ruta opcional cuando no existe dicha ruta
-      onGenerateRoute: (settings) {
-        print(settings);
-        return MaterialPageRoute(
-          builder: (context) => const AlertScreen(),
-        );
-      },
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Material App',
+        //se independiza initialRoute a app_routes
+        initialRoute: AppRoutes.initialRoute,
+        //se independiza routes a app_routes
+        routes: AppRoutes.routes,
+        //se llama el ongenerate de app_routes que se independizo
+        onGenerateRoute: AppRoutes.onGenerateRote);
   }
 }
