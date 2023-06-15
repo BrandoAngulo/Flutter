@@ -14,8 +14,20 @@ class MyApp extends StatelessWidget {
         //se independiza initialRoute a app_routes
         initialRoute: AppRoutes.initialRoute,
         //se independiza routes a app_routes
-        routes: AppRoutes.routes,
+        routes: AppRoutes.getAppRoutes(),
         //se llama el ongenerate de app_routes que se independizo
-        onGenerateRoute: AppRoutes.onGenerateRote);
+        onGenerateRoute: AppRoutes.onGenerateRote,
+        //tema global o color global
+        theme: ThemeData.light().copyWith(
+          //color primario
+          primaryColor: Colors.deepOrange,
+          
+          //tema del appBar
+          appBarTheme: 
+          const AppBarTheme(
+            color: Colors.deepOrange, 
+            elevation: 0),
+        ),  
+      );
   }
 }

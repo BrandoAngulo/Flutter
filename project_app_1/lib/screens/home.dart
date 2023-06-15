@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:project_app_1/router/app_routes.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final menuRoutes = AppRoutes.menuOption;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
-        elevation: 0,
-        backgroundColor: Colors.deepOrange,
       ),
       body: ListView.separated(
-        itemCount: 5,
+        itemCount: menuRoutes.length,
         separatorBuilder: (_, __) => const Divider(),
         itemBuilder: (context, index) => ListTile(
-          title: const Text('link'),
-          trailing: const Icon(
-            Icons.ads_click_rounded,
-            color: Colors.deepOrange,
-          ),
+          title: Text(menuRoutes[index].name),
+          trailing: Icon(menuRoutes[index].icon,),
           onTap: () {
             //para navegar a la otra vista es el context y el nombre de la ruta que asignamos en el main
-            Navigator.pushNamed(context, 'listView2');
+            Navigator.pushNamed(context, menuRoutes[index].route);
           },
         ),
       ),

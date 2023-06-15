@@ -9,7 +9,6 @@ class ListView1Screen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('ListView Tipo 1'),
-          elevation: 10,
         ),
         body: ListView(
           children: [
@@ -18,7 +17,7 @@ class ListView1Screen extends StatelessWidget {
                 .map((game) => ListTile(
                       title: Text(game),
                       trailing: const Icon(
-                          Icons.arrow_circle_right_sharp), //agrega un icono
+                          Icons.arrow_circle_right_outlined), //agrega un icono
                     ))
                 .toList(), //convierte a una lista de string
           ],

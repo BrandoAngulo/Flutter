@@ -10,7 +10,8 @@ class MenuOption {
 
   MenuOption(
       //Se pone required y entre {} para darle la flexibilidad al usuario que ponga cualquier campo
-      {required this.route,
+      {
+      required this.route,
       required this.icon,
       required this.name,
       required this.screen});
