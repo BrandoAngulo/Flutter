@@ -5,13 +5,16 @@ class AppTheme {
   static const Color primary = Colors.deepOrange;
 
   static final themeLight = ThemeData.light().copyWith(
-    //color primario
-    primaryColor: Colors.deepOrange,
-    //tema del appBar
-    appBarTheme: const AppBarTheme(color: primary, elevation: 0),
-  );
+      //color primario
+      primaryColor: Colors.deepOrange,
+      //tema del appBar
+      appBarTheme: const AppBarTheme(color: primary, elevation: 0),
 
-    static final darkTheme = ThemeData.dark().copyWith(
+      //Style para todos los botones de la app
+      textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(foregroundColor: primary)));
+
+  static final darkTheme = ThemeData.dark().copyWith(
     //color primario
     primaryColor: Colors.deepOrange,
     //tema del appBar
@@ -20,4 +23,3 @@ class AppTheme {
     scaffoldBackgroundColor: Colors.black,
   );
 }
-
