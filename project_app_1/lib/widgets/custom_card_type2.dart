@@ -31,6 +31,9 @@ class CustomCardType2 extends StatelessWidget {
           //tiempo en hacer el fadeinDuration osea q cargue mas rapido al entrar al modulo
           fadeInDuration: const Duration(milliseconds: 200),
         ),
+
+        //se realiza esta condicion por si la variable no nada q no muestre ningun titulo
+        if(cardName != null)
         //la idea de envolver el text() en un container es para darle estilos
         Container(
           //alinear del centro al final
