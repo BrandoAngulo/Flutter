@@ -22,4 +22,9 @@ class AppTheme {
     //background del scaffold
     scaffoldBackgroundColor: Colors.black,
   );
+
+  //floattingActionBotton
+  static const botontheme = FloatingActionButtonThemeData(
+backgroundColor: primary
+  );  
 }
