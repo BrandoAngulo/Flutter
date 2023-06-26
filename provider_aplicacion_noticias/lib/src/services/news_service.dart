@@ -15,7 +15,7 @@ class NewsService with ChangeNotifier {
 
   getTopHeadLines() async {
     final url = Uri.parse(
-        '$_URL_NEWS/top-headlines?country=co&category=technology&apiKey=$_API_KEY');
+        '$_URL_NEWS/top-headlines?country=co&apiKey=$_API_KEY');
     final res = await http.get(url);
 
     final newResponse = newResponseFromJson(res.body);

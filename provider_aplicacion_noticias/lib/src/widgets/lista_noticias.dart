@@ -47,8 +47,15 @@ class _TarjetaImagen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      child: Text('Hola worl'),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        //operador ternario si la noticia es doferente de null ? entonces muestro el fadeiInImage
+        child: (noticia.urlToImage != null)
+            ? FadeInImage(
+                placeholder: const AssetImage('assets/img/giphy_xp.gif'),
+                image: NetworkImage(noticia.urlToImage),
+              )
+            //caso contrario esto va con el operador ternario
+            : Image(image: AssetImage('assets/img/no-image.png'))   
     );
   }
 }
