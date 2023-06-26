@@ -34,49 +34,17 @@ class _Noticia extends StatelessWidget {
         _TarjetaTopBar(noticia, index),
         _TarjetaTitulo(noticia),
         _TarjetaImagen(noticia),
+        _TarjetaBody(noticia),
+        _TarjetaBotones(noticia),
+        const SizedBox(),
+        const Divider(),
       ],
     );
   }
 }
 
-class _TarjetaImagen extends StatelessWidget {
-  final Article noticia;
 
-  const _TarjetaImagen(this.noticia);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        //operador ternario si la noticia es doferente de null ? entonces muestro el fadeiInImage
-        child: (noticia.urlToImage != null)
-            ? FadeInImage(
-                placeholder: const AssetImage('assets/img/giphy_xp.gif'),
-                image: NetworkImage(noticia.urlToImage),
-              )
-            //caso contrario esto va con el operador ternario
-            : Image(image: AssetImage('assets/img/no-image.png'))   
-    );
-  }
-}
-
-class _TarjetaTitulo extends StatelessWidget {
-  final Article noticia;
-
-  const _TarjetaTitulo(this.noticia);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Text(
-        noticia.title,
-        style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
-      ),
-    );
-  }
-}
-
+//_TarjetaTopBar(noticia, index)
 class _TarjetaTopBar extends StatelessWidget {
   final Article noticia;
   final int index;
@@ -96,6 +64,101 @@ class _TarjetaTopBar extends StatelessWidget {
           Text(noticia.author),
         ],
       ),
+    );
+  }
+}
+
+//_TarjetaTitulo(noticia)
+class _TarjetaTitulo extends StatelessWidget {
+  final Article noticia;
+
+  const _TarjetaTitulo(this.noticia);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Text(
+        noticia.title,
+        style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
+      ),
+    );
+  }
+}
+
+//_TarjetaBody(noticia)
+class _TarjetaBody extends StatelessWidget {
+  final Article noticia;
+
+  const _TarjetaBody(this.noticia);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Text(
+          //Se realiza un operador ternario, si noticia.description es != de null : 'pasa esto'
+          (noticia.description != null)
+              ? noticia.description
+              : 'No hay contenido disponible'),
+    );
+  }
+}
+
+//_TarjetaImagen(noticia)
+class _TarjetaImagen extends StatelessWidget {
+  final Article noticia;
+
+  const _TarjetaImagen(this.noticia);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      //hace recortes a la imagen
+      child: ClipRRect(
+        borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(50), bottomRight: Radius.circular(50)),
+        child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            //operador ternario si la noticia es doferente de null ? entonces muestro el fadeiInImage
+            child: (noticia.urlToImage != null)
+                ? FadeInImage(
+                    placeholder: const AssetImage('assets/img/giphy_xp.gif'),
+                    image: NetworkImage(noticia.urlToImage),
+                  )
+                //caso contrario esto va con el operador ternario
+                : const Image(image: AssetImage('assets/img/no-image.png'))),
+      ),
+    );
+  }
+}
+
+//_TarjetaBotones(noticia)
+class _TarjetaBotones extends StatelessWidget {
+  final Article noticia;
+
+  const _TarjetaBotones(this.noticia);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        RawMaterialButton(
+          onPressed: () {},
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          fillColor: miTema.colorScheme.secondary,
+          child: const Icon(Icons.star_border),
+        ),
+        const SizedBox(width: 5),
+        RawMaterialButton(
+          onPressed: () {},
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          fillColor: Colors.blue,
+          child: const Icon(Icons.more),
+        ),
+      ],
     );
   }
 }
