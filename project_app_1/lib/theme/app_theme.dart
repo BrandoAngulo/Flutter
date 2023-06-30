@@ -12,7 +12,9 @@ class AppTheme {
 
       //Style para todos los botones de la app
       textButtonTheme: TextButtonThemeData(
-          style: TextButton.styleFrom(foregroundColor: primary)),
+          style: TextButton.styleFrom(
+              foregroundColor: primary,
+              textStyle: const TextStyle(fontSize: 18))),
 
       //floattingActionBotton
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
