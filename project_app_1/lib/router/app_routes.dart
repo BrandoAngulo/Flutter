@@ -7,10 +7,12 @@ class AppRoutes {
 
   static final menuOption = <MenuOption>[
     MenuOption(route: 'home',icon: Icons.home_outlined,name: 'Home Screen',screen: const HomeScreen()),
-    MenuOption(route: 'listView1',icon: Icons.local_play,name: 'vista 1',screen: const ListView1Screen()),
-    MenuOption(route: 'listView2',icon: Icons.playlist_play_rounded,name: 'vista 2',screen: const ListView2Screen()),
-    MenuOption(route: 'cards',icon: Icons.add_card_sharp,name: 'cartas',screen: const CardScreen()),
-    MenuOption(route: 'alerts',icon: Icons.notification_important,name: 'alertas',screen: const AlertScreen()),
+    MenuOption(route: 'listView1',icon: Icons.local_play,name: 'Vista 1',screen: const ListView1Screen()),
+    MenuOption(route: 'listView2',icon: Icons.playlist_play_rounded,name: 'Vista 2',screen: const ListView2Screen()),
+    MenuOption(route: 'cards',icon: Icons.add_card_sharp,name: 'Cards',screen: const CardScreen()),
+    MenuOption(route: 'alerts',icon: Icons.notification_important,name: 'Alertas',screen: const AlertScreen()),
+    MenuOption(route: 'avatar-circle',icon: Icons.personal_injury_outlined,name: 'Avatar',screen: const AvatarScreen()),
+    MenuOption(route: 'animated',icon: Icons.animation_outlined,name: 'Animaciones',screen: const AnimatedScreen()),
   ];
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {

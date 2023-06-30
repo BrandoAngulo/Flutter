@@ -25,7 +25,11 @@ class AppTheme {
           style: ElevatedButton.styleFrom(
         backgroundColor: primary,
         shape: const StadiumBorder(),
-      )));
+      ))
+      
+      //CircleAvatar
+      
+      );
 
 //Dark Theme
   static final darkTheme = ThemeData.dark().copyWith(
