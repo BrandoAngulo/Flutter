@@ -19,22 +19,24 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
       if ((scrollController.position.pixels + 500) >=
           (scrollController.position.maxScrollExtent)) {
         //addId5();
-        FetchData();
+        fetchData();
       }
     });
     super.initState();
   }
 
-  Future FetchData() async{
-    if (isLoading) return; 
-      isLoading = true;
-      setState(() {});
+  Future fetchData() async {
+    if (isLoading) return;
+    isLoading = true;
+    setState(() {});
+    await Future.delayed(const Duration(seconds: 3));
+    addId5();
+    isLoading = false;
+    setState(() {});
 
-      await Future.delayed(const Duration(seconds: 3));
-      addId5();
-      isLoading = false;
-      setState(() {});
-
+    if ((scrollController.position.pixels + 100) <= scrollController.position.maxScrollExtent) return;
+          scrollController.animateTo(scrollController.position.pixels + 120,
+          duration: const Duration(milliseconds: 300), curve: Curves.bounceInOut);
   }
 
   void addId5() {
@@ -74,11 +76,13 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
                         'https://picsum.photos/500/300?image=${idImages[index]}'));
               },
             ),
-            Positioned(bottom: 10,
-            //usamos la variable q le estamos reutilizando la funcion size de mediaquery
-            right: size.width / 2 - 30,
-            child: const _loadingIcon(),
-            )
+            if (isLoading)
+              Positioned(
+                bottom: 10,
+                //usamos la variable q le estamos reutilizando la funcion size de mediaquery
+                right: size.width / 2 - 30,
+                child: const _loadingIcon(),
+              )
           ],
         ),
       ),
