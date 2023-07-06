@@ -16,6 +16,7 @@ class InputsScreen extends StatelessWidget {
       'password':'123456*/s',
       'role':'admin',
     };
+    List<String>selectedItems=[];
 
     return Scaffold(
       appBar: AppBar(
@@ -30,16 +31,31 @@ class InputsScreen extends StatelessWidget {
             children: [
               CustomInputsFields(hintText: 'Nombre', helperText: 'Solo letras', icon: Icons.assignment_ind_outlined, suffixIcon: Icons.group_outlined,
                label: 'Nombre', formProperty: 'nombre', formValues: formValues, ),
-
+              const SizedBox(height: 30,),
               CustomInputsFields(hintText: 'Apellido', helperText: 'Solo letras', icon: Icons.assignment_ind_outlined, suffixIcon: Icons.group_outlined
               ,label: 'Apellido', formProperty: 'apellido', formValues: formValues,),
-
+              const SizedBox(height: 30,),
               CustomInputsFields(hintText: 'Correo', helperText: 'Solo letras', icon: Icons.email_outlined, suffixIcon: Icons.send_rounded,label: 'Correo',
                keyboardType: TextInputType.emailAddress, formProperty: 'correo', formValues: formValues,),
-
+              const SizedBox(height: 30,),              
               CustomInputsFields(hintText: 'Contraseña', icon: Icons.password, suffixIcon: Icons.security_outlined,label: 'Contraseña', obscureText: true,
                formProperty: 'password', formValues: formValues,),
+               const SizedBox(height: 30,),
 
+               DropdownButtonFormField(
+                value: 'Admin',
+                items: const [
+                  DropdownMenuItem(value: 'Admin', child: Text('Admin')),
+                  DropdownMenuItem(value: 'Vendedor', child: Text('Vendedor')),
+                  DropdownMenuItem(value: 'Contador', child: Text('Contador')),
+                  ], 
+
+               onChanged: (value) {
+               print(value);
+               formValues['role'] = value ?? 'Admin';  
+                },
+               ),
+               SizedBox(height: 30,),
               //boton para guardar datos del formulario
               ElevatedButton(child: const SizedBox(width: double.infinity,child: Center(child: Text('Guardar'),),),
               
@@ -48,9 +64,10 @@ class InputsScreen extends StatelessWidget {
                   FocusScope.of(context).requestFocus(FocusNode());
                   //si la key no llega a este formulario
                   if (!myFormKey.currentState!.validate()) {
-                    print(formValues);
+                    print('Formulario vacio');
                     return;
                   }
+                  print(formValues);
               },
               )
             ],
