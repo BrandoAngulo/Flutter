@@ -16,7 +16,6 @@ class InputsScreen extends StatelessWidget {
       'password':'123456*/s',
       'role':'admin',
     };
-    List<String>selectedItems=[];
 
     return Scaffold(
       appBar: AppBar(
